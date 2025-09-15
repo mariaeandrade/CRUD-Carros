@@ -9,5 +9,15 @@ const getAllCarros = (req, res) => {
     });
 }
 
+    const getCarrosByID = (req, res) => {
+        const id = parseInt(req.params.id);
 
-    export { getAllCarros}
+        const carro = carros.find((carro) => carro.id === id);
+
+        res.status(200).json({
+            total: carro.length,
+            carro: carro
+        });
+    }
+
+    export { getAllCarros, getCarrosByID}
