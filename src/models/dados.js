@@ -77,7 +77,7 @@ let carros = [
     modelo: "Carro de corrida",
     ano: 2010,
     cor: "Laranja com detalhes amarelos",
-    vitorias: 1,
+    qtdeVitorias: 1,
   },
   {
     id: 11,
@@ -85,7 +85,7 @@ let carros = [
     modelo: "Carro de corrida",
     ano: 2006,
     cor: "Verde",
-    vitorias: 4,
+    qtdeVitorias: 4,
   },
   {
     id: 12,
@@ -93,7 +93,7 @@ let carros = [
     modelo: "Carro espião",
     ano: 2011,
     cor: "Azul metálico",
-    vitorias: 0,
+    qtdeVitorias: 0,
   },
   {
     id: 13,
@@ -101,7 +101,7 @@ let carros = [
     modelo: "Carro de corrida",
     ano: 2012,
     cor: "Verde com detalhes vermelhos",
-    vitorias: 6,
+    qtdeVitorias: 6,
   },
   {
     id: 14,
@@ -109,7 +109,7 @@ let carros = [
     modelo: "Carro de corrida",
     ano: 2010,
     cor: "Azul com detalhes prateados",
-    vitorias: 0,
+    qtdeVitorias: 0,
   }
 ];
 
