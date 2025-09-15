@@ -47,6 +47,52 @@ const creatCarro = (req, res) => {
   });
 };
 
+const updateCarro = (req, res ) => {
+    const id = parseInt(req.params.id);
+    const {nome, modelo, ano, cor, qtdeVitorias} = req.body;
+
+    const idParaEditar = id;
+
+    if(isNaN(idParaEditar)) {
+        return res.status(400).json({
+            success:false,
+            message: "O ID deve ser um número valido"
+        });
+    }
+
+    const carroExiste = carros.find((carro) => carro.id === idParaEditar);
+    if(!carroExiste) {
+        return res.status(404).json ({
+            success: false,
+            message: `O carro com o id ${idParaEditar} não foi encontrado`,
+        });
+    }
+
+    const carrosAtualizados = carros.map((carro) => carro.id === idParaEditar ? {
+        ...carro,
+        ...(nome && {nome}),
+        ...(modelo && {modelo}),
+        ...(ano && {ano: parseInt (ano)}),
+        ...(cor && {cor}),
+        ...(qtdeVitorias && { qtdeVitorias: parseInt (qtdeVitorias)})
+   }
+   : carro
+ );
+
+ carros.splice(0, carros.length, ...carrosAtualizados);
+
+ const carroEditado = carros.find((carro) => carro.id === idParaEditar);
+ res.status(200).json({
+    success: true,
+    message: "Dados dos carros atualizados com sucesso",
+    carro: carroEditado
+ })
+
+}
+
+
+
+
 const deleteCarro = (req, res) => {
     const id = parseInt(req.params.id);
 
@@ -73,4 +119,4 @@ const deleteCarro = (req, res) => {
     })
 }
 
-export { getAllCarros, getCarrosByID, creatCarro, deleteCarro };
+export { getAllCarros, getCarrosByID, creatCarro, deleteCarro, updateCarro };
