@@ -47,4 +47,30 @@ const creatCarro = (req, res) => {
   });
 };
 
-export { getAllCarros, getCarrosByID, creatCarro };
+const deleteCarro = (req, res) => {
+    const id = parseInt(req.params.id);
+
+    if(isNaN(id)) {
+        return res.status(400).json({
+            success: false,
+            message: `O ID deve ser valido`
+        });
+    }
+    const carrosParaRemover = carros.find((carro) => carro.id === id);
+    if (!carrosParaRemover) {
+        return res.status(404).json({
+            success: false,
+            message: `O carro com ID ${id} não existe`
+        });
+    }
+    const carrosFiltrados = carros.filter((carro) => carro.id !== id);
+
+    carros.splice(0, carros.length, ... carrosFiltrados);
+
+    res.status(200).json({
+        success:true,
+        message: `O carro ${id} foi removido de linha`
+    })
+}
+
+export { getAllCarros, getCarrosByID, creatCarro, deleteCarro };
